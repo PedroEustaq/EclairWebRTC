@@ -1,0 +1,152 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ==================== HELPERS ====================
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidRoomCode(code) {
+      return code is string && code.matches('^[A-Z0-9]{8}$');
+    }
+
+    // Firebase Auth UIDs são base64url (~28 chars). Aceitamos um range seguro.
+    function isValidUid(uid) {
+      return uid is string
+             && uid.size() >= 20
+             && uid.size() <= 128
+             && uid.matches('^[A-Za-z0-9_-]+$');
+    }
+
+    // IDs de conexão seguem "callerUid>calleeUid".
+    // Só os dois participantes podem acessar o doc de conexão.
+    function isConnectionParticipant(connectionId) {
+      let parts = connectionId.split('>');
+      return parts.size() == 2
+             && (request.auth.uid == parts[0] || request.auth.uid == parts[1]);
+    }
+
+    // ==================== VALIDAÇÃO DE SDP ====================
+
+    function isValidSdp(sdp) {
+      return sdp is string
+             && sdp.size() > 0
+             && sdp.size() <= 32768; // 32 KB — generoso o suficiente
+    }
+
+    function isValidOffer(offer) {
+      return offer is map
+             && offer.keys().hasAll(['type', 'sdp'])
+             && offer.type == 'offer'
+             && isValidSdp(offer.sdp);
+    }
+
+    function isValidAnswer(answer) {
+      return answer is map
+             && answer.keys().hasAll(['type', 'sdp'])
+             && answer.type == 'answer'
+             && isValidSdp(answer.sdp);
+    }
+
+    // ==================== VALIDAÇÃO DE PARTICIPANTES ====================
+
+    // Usuário está APENAS se adicionando à lista (arrayUnion)
+    function isJoiningRoom(oldList, newList) {
+      return !(request.auth.uid in oldList)
+             && request.auth.uid in newList
+             && newList.size() == oldList.size() + 1
+             && newList.hasAll(oldList);
+    }
+
+    // Usuário está APENAS se removendo da lista (arrayRemove)
+    function isLeavingRoom(oldList, newList) {
+      return request.auth.uid in oldList
+             && !(request.auth.uid in newList)
+             && oldList.size() == newList.size() + 1
+             && oldList.hasAll(newList);
+    }
+
+    // ==================== SALAS ====================
+
+    match /SalaUsuarios/{roomCode} {
+
+      // get: leitura de uma sala específica (necessária para entrar)
+      // list: NEGADO — evita enumeração de salas
+      allow get: if isSignedIn() && isValidRoomCode(roomCode);
+      allow list: if false;
+
+      // Criação: criador é owner, único participante e usa UID real do Auth
+      allow create: if isSignedIn()
+                    && isValidRoomCode(roomCode)
+                    && request.resource.data.keys().hasAll([
+                         'personalCode', 'ownerUid', 'createdAt', 'participants'
+                       ])
+                    && isValidUid(request.resource.data.personalCode)
+                    && request.resource.data.personalCode == request.auth.uid
+                    && request.resource.data.ownerUid == request.auth.uid
+                    && request.resource.data.createdAt == request.time
+                    && request.resource.data.participants is list
+                    && request.resource.data.participants.size() == 1
+                    && request.resource.data.participants[0] == request.auth.uid;
+
+      // Update: apenas `participants`, e o usuário só pode
+      // adicionar a si mesmo ou remover a si mesmo.
+      // O proprietário também pode gerenciar a lista (limpeza).
+      allow update: if isSignedIn()
+                    && isValidRoomCode(roomCode)
+                    && request.resource.data.diff(resource.data)
+                         .affectedKeys().hasOnly(['participants'])
+                    && (
+                         isJoiningRoom(resource.data.participants,
+                                       request.resource.data.participants)
+                         || isLeavingRoom(resource.data.participants,
+                                          request.resource.data.participants)
+                         || resource.data.ownerUid == request.auth.uid
+                       );
+
+      allow delete: if isSignedIn() && resource.data.ownerUid == request.auth.uid;
+
+      // ==================== CONEXÕES P2P ====================
+
+      match /connections/{connectionId} {
+
+        // Criação: caller cria o doc com a offer
+        allow create: if isSignedIn()
+                      && isConnectionParticipant(connectionId)
+                      && isValidOffer(request.resource.data.offer);
+
+        // Update: callee adiciona a answer (nada mais pode ser alterado)
+        allow update: if isSignedIn()
+                      && isConnectionParticipant(connectionId)
+                      && request.resource.data.diff(resource.data)
+                           .affectedKeys().hasOnly(['answer'])
+                      && isValidAnswer(request.resource.data.answer);
+
+        // Leitura: só participantes daquela conexão específica
+        allow read: if isSignedIn() && isConnectionParticipant(connectionId);
+
+        // Delete: participantes podem limpar conexões ao sair
+        allow delete: if isSignedIn() && isConnectionParticipant(connectionId);
+
+        // ==================== ICE CANDIDATES ====================
+        match /callerCandidates/{candidateId} {
+          allow read, write: if isSignedIn()
+                             && isConnectionParticipant(connectionId);
+        }
+
+        match /calleeCandidates/{candidateId} {
+          allow read, write: if isSignedIn()
+                             && isConnectionParticipant(connectionId);
+        }
+      }
+    }
+
+    // ==================== DENY ALL ====================
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

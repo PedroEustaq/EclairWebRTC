@@ -1,0 +1,27 @@
+@media (max-width: 768px) {
+    #eclairLogo {
+        width: 40%;
+        height: auto;
+    }
+    .textcodigo {
+        display: none;
+    }
+    .codigodaSala {
+        font-size: 20px;
+    }
+    header {
+        min-height: 50px;
+    }
+    .CopiarIcone {
+        width: 20px;
+        height: 20px;
+    }
+    div#videos:has( > :nth-child(3)) >* {
+        width: 45%;
+    }
+    div#videos:has( > :nth-child(3)) >*> video {
+        width: 100%;
+        min-height: 0px;
+        min-width: 0px;
+    }
+}

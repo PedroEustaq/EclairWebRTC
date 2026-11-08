@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EclairWeb</title>
+    <link rel="shortcut icon" href="/img/biscoitito.png" type="image/x-icon">
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <meta name="color-scheme" content="only light">
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/7.13.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/7.13.1/firebase-firestore.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/7.13.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/init.js"></script>
+
+    <link rel="stylesheet" href="/css/chat.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/celularIndex.css">
+
+    <meta name="google-site-verification" content="mH1QoZPHzBc1bGl9pG6JGZeskS3M5Kmhi8v-ZDMAMMQ" />
+</head>
+
+<body>
+    <header>
+        <img src="/img/EclairWeb.png" alt="" class="logoEclair">
+        <div>
+            <a href="https://pedroeustaquio.vercel.app/" rel="noreferrer" data-i18n="header.aboutUs">🍪Sobre Nós</a>
+            <button class="langSwitch" data-lang-switch type="button">EN</button>
+        </div>
+    </header>
+
+    <main class="parteMain">
+        <div class="textoInforma">
+            <h1 data-i18n-html="index.title">Video Chamadas<br>temporárias.</h1>
+            <h2 data-i18n="index.subtitle">Sem nenhum custo.</h2>
+
+            <div class="slider">
+                <div class="slider-track">
+                    <img src="/img/woman-with-headset-video-call.png" alt="" width="300px">
+                    <img src="/img/image 1.jpg" alt="" width="300px">
+                    <img src="/img/image 3.jpg" alt="" width="300px">
+                    <img src="/img/image 4.jpg" alt="" width="300px">
+                    <img src="/img/woman-with-headset-video-call.png" alt="" width="300px">
+                    <img src="/img/image 1.jpg" alt="" width="300px">
+                    <img src="/img/image 3.jpg" alt="" width="300px">
+                    <img src="/img/image 4.jpg" alt="" width="300px">
+                </div>
+            </div>
+
+            <div class="sliderR">
+                <div class="slider-trackR">
+                    <img src="/img/Imagini1.jpg" alt="" width="300px">
+                    <img src="/img/imagini2.jpg" alt="" width="300px">
+                    <img src="/img/imagini3.jpg" alt="" width="300px">
+                    <img src="/img/imagini4.jpg" alt="" width="300px">
+                    <img src="/img/Imagini1.jpg" alt="" width="300px">
+                    <img src="/img/imagini2.jpg" alt="" width="300px">
+                    <img src="/img/imagini3.jpg" alt="" width="300px">
+                    <img src="/img/imagini4.jpg" alt="" width="300px">
+                </div>
+            </div>
+        </div>
+        <div class="crieSuasSalas">
+            <div class="informacoes">
+                <img src="/img/biscoitito.png" class="biscoitao" alt="">
+                <h1 data-i18n-html="index.rules">Siga as <a class="regra" href="/html/regras.html">regras da
+                        plataforma</a></h1>
+                <hr>
+                <div class="marcar">
+                    <input type="checkbox">
+                    <h2 data-i18n="index.termsLabel">Li e estou ciente dos termos e condições.</h2>
+                </div>
+            </div>
+            <img src="/img/biscoitito.png" class="biscoitinho" alt="">
+            <div class="acionarBotoes" id="RedirecionarSala" data-i18n="index.createRoom">
+                Criar sala
+            </div>
+            <div class="acionarBotoes" id="RedirecionarParaEntrar" data-i18n="index.joinRoom">
+                Conectar a uma Sala
+            </div>
+
+        </div>
+    </main>
+    <div class="mdc-dialog" id="room-dialog" role="alertdialog" aria-modal="true" aria-labelledby="my-dialog-title"
+        aria-describedby="my-dialog-content">
+        <div class="mdc-dialog__container">
+            <div class="mdc-dialog__surface">
+                <h2 class="mdc-dialog__title" id="my-dialog-title" data-i18n="index.modalTitle">Conectar ao Usuário</h2>
+                <div class="mdc-dialog__content" id="my-dialog-content">
+                    <span data-i18n="index.modalDesc">Digite o código do usuário (ex: ABC12345):</span>
+                    <div class="mdc-text-field">
+                        <input type="text" id="room-id" class="mdc-text-field__input">
+                        <label class="mdc-floating-label" for="my-text-field" data-i18n="index.modalLabel">Código do
+                            Usuário</label>
+                        <div class="mdc-line-ripple"></div>
+                    </div>
+                </div>
+                <footer class="mdc-dialog__actions">
+                    <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="no">
+                        <span class="mdc-button__label" data-i18n="common.cancel">Cancel</span>
+                    </button>
+                    <button id="confirmJoinBtn" type="button" class="mdc-button mdc-dialog__button"
+                        data-mdc-dialog-action="yes">
+                        <span class="mdc-button__label" data-i18n="common.join">Join</span>
+                    </button>
+                </footer>
+            </div>
+        </div>
+        <div class="mdc-dialog__scrim"></div>
+    </div>
+    <div id="modalRoomId">
+        <div class="modal-content">
+            <h2 data-i18n="index.modal2Title">Conectar a uma Sala</h2>
+            <input id="inputRoomId" type="text" placeholder="Digite o código da Sala"
+                data-i18n-placeholder="index.modal2Placeholder">
+            <button id="btnConfirmRoomId" data-i18n="index.modal2Enter">Entrar</button>
+        </div>
+    </div>
+    <script defer src="/js/i18n.js"></script>
+    <script defer src="/js/shared.js"></script>
+    <script defer src="/js/index.js"></script>
+</body>
+
+</html>

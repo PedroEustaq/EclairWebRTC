@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EclairWeb</title>
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <meta name="color-scheme" content="only light">
+    <link rel="shortcut icon" href="/img/biscoitito.png" type="image/x-icon">
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/7.13.1/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/7.13.1/firebase-firestore.js"></script>
+    <!-- AUTH — necessário para ensureFirebaseAuth() em shared.js -->
+    <script defer src="/__/firebase/7.13.1/firebase-auth.js"></script>
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" href="/css/chat.css">
+    <link rel="stylesheet" href="/css/celular.css">
+</head>
+
+<body>
+    <header class="cabecalho">
+        <img src="/img/EclairWeb.png" alt="" id="eclairLogo">
+        <div id="currentRoom">
+            
+        </div>
+        <button class="langSwitch" data-lang-switch type="button">EN</button>
+    </header>
+
+   
+    <div id="videos">
+        <div class="videoContainer">
+            <video id="localVideo" muted autoplay playsinline></video>
+            <span class="eu-label" data-i18n="chat.you">Você</span>
+        </div>
+       
+        
+    </div>
+    <footer class="iconeUtilitarios">
+        <img class="microPNG" id="microPNGA" src="/img/microfon.png" alt="Microfone: clique para ativar/desativar" data-i18n-alt="chat.micAlt">
+        <img class="cameraPNG" id="cameraBtn" src="/img/camera.png" alt="Câmera" data-i18n-alt="chat.camAlt"> 
+        <img class="desligaPNG" id="hangupBtn" src="/img/Desligar.png" alt="Desligar" data-i18n-alt="chat.hangupAlt">
+    </footer>
+    <div class="mdc-dialog" id="room-dialog" role="alertdialog" aria-modal="true" aria-labelledby="my-dialog-title"
+        aria-describedby="my-dialog-content">
+        <div class="mdc-dialog__container">
+            <div class="mdc-dialog__surface">
+                <h2 class="mdc-dialog__title" id="my-dialog-title" data-i18n="chat.joinTitle">Entrar na sala</h2>
+                <div class="mdc-dialog__content" id="my-dialog-content">
+                    <span data-i18n="chat.joinDesc">Digite o ID da sala:</span>
+                    <div class="mdc-text-field">
+                        <input type="text" id="room-id" class="mdc-text-field__input">
+                        <label class="mdc-floating-label" for="my-text-field" data-i18n="chat.roomIdLabel">ID da Sala</label>
+                        <div class="mdc-line-ripple"></div>
+                    </div>
+                </div>
+                <footer class="mdc-dialog__actions">
+                    <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="no">
+                        <span class="mdc-button__label" data-i18n="common.cancel">Cancel</span>
+                    </button>
+                    <button id="confirmJoinBtn" type="button" class="mdc-button mdc-dialog__button"
+                        data-mdc-dialog-action="yes">
+                        <span class="mdc-button__label" data-i18n="common.join">Join</span>
+                    </button>
+                </footer>
+            </div>
+        </div>
+        <div class="mdc-dialog__scrim"></div>
+    </div>
+    <script defer src="/js/i18n.js"></script>
+    <script defer src="/js/shared.js"></script>
+    <script defer src="/js/chat-core.js"></script>
+    <script defer src="/js/chat-ice.js"></script>
+    <script defer src="/js/chat-connection.js"></script>
+    <script defer src="/js/chat-room.js"></script>
+    <script defer src="/js/chat-join.js"></script>
+    <script defer src="/js/chat-media.js"></script>
+    <script defer src="/js/chat-controls.js"></script>
+</body>
+
+</html>

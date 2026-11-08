@@ -1,0 +1,124 @@
+@media (max-width: 768px) {
+    .parteMain {
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .textoInforma {
+        height: 50%;
+        width: 100%;
+    }
+
+    .crieSuasSalas {
+        height: 50%;
+        width: 95%;
+    }
+
+    .textoInforma>h1 {
+        font-size: 28px;
+    }
+
+    .textoInforma>h2 {
+        font-size: 23px;
+    }
+
+    .slider {
+        height: 80px;
+        margin-top: 0px;
+
+
+
+    }
+
+    .sliderR {
+        margin-top: 0px;
+        height: 80px;
+
+
+     
+        
+    }
+
+    @keyframes scrollar {
+        0% {
+            transform: translateX(0px);
+        }
+
+        100% {
+            transform: translateX(calc(-130px * 4));
+        }
+    }
+    @keyframes scrollarNovo {
+        0% {
+            transform: translateX(-130px);
+        }
+
+        100% {
+            transform: translateX(calc(0px * 4));
+        }
+    }
+
+    .slider-track {
+        width: calc(120px * 8);
+        animation: scrollar 40s linear infinite;
+    }
+
+    .slider-trackR {
+        width: calc(120px * 8);
+        background-color: rgba(0, 255, 255, 0);
+        animation: scrollarNovo 40s linear infinite;
+        
+    }
+
+    .slider-track>img {
+        width: 120px;
+        height: 70px;
+        border-radius: 5px;
+
+    }
+
+    .slider-trackR>img {
+        width: 120px;
+        height: 70px;
+        border-radius: 5px;
+    }
+
+    .biscoitao {
+        display: none;
+    }
+
+    .informacoes>h1 {
+        font-size: 24px;
+    }
+
+    .marcar {
+        padding: 5px 10px;
+        border-radius: 10px;
+    }
+
+    .informacoes>div>h2 {
+        font-size: 20px;
+    }
+
+    .crieSuasSalas>img {
+        background-color: rgba(240, 248, 255, 0);
+    }
+
+    .biscoitinho {
+        width: 20%;
+        display: flex;
+        max-width: 110px;
+        position: absolute;
+        transform: translateX(-100px) translateY(-40px);
+        margin-right: 10px;
+        background-color: rgb(255, 60, 60);
+
+    }
+   body {
+    min-height: 700px;
+    height: 100vh;
+    overflow-y: hidden;
+    background-color: #1c1c1c;
+   }
+}

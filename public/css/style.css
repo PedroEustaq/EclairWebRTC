@@ -1,0 +1,533 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background: #0089f2;
+    color: rgba(0, 0, 0, 0.87);
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    height: 100dvh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: hidden;
+    background-image: url(/img/wallpaperFrutiger.jpg);
+    background-size: cover;
+    object-fit: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    /* From https://css.glass */
+    background: #1c1c1c;
+    border-radius: 0px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    height: 10%;
+    width: 100%;
+    max-height: 150px;
+    transition: all 0.5s;
+}
+
+header>* {
+    margin: 0px 20px;
+    transition: all 0.5s;
+}
+
+header>div>a {
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+    margin-left: 0000px;
+    text-decoration: none;
+}
+
+.logoEclair {
+    height: 60%;
+    background-color: #00000000;
+}
+
+.parteMain {
+    background-color: #ffffff00;
+    width: 90%;
+    height: 600px;
+    display: flex;
+    max-width: 1600px;
+    margin-top: 20px;
+    max-height: 700px;
+
+}
+
+.biscoitao {
+   width: 45%;
+}
+
+.acionarBotoes {
+    font-size: 17px;
+    background-color: #cccccc !important;
+    color: #666666 !important;
+    font-weight: 600;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0);
+    margin-top: 10px;
+    margin: 10px 5px;
+    padding: 2px 10px;
+    border-radius: 5px;
+    height: 50px;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    transition: all 0.5s;
+    align-self: flex-end;
+}
+
+.acionarBotoes:hover {
+    cursor: pointer;
+    background-color: #0154e4;
+    transition: all 0.2s;
+}
+
+.slider {
+    height: 150px;
+    position: relative;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    margin-top: 50px;
+}
+
+.slider-track {
+    display: flex;
+    width: calc(200px * 8);
+    animation: scrollar 40s linear infinite;
+}
+
+.slider-track>img {
+    height: 150px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    margin: 0px 5px;
+    border-radius: 20px;
+}
+
+.sliderR {
+    height: 170px;
+    position: relative;
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.slider-trackR {
+    display: flex;
+    width: calc(200px * 8);
+
+    animation: scrollar 40s linear infinite;
+    animation-direction: reverse;
+}
+
+.slider-trackR>img {
+    height: 150px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    margin: 0px 5px;
+    border-radius: 20px;
+}
+
+.microPNG {
+    width: 30px;
+    height: 30px;
+    background-color: #ffa100;
+    border-radius: 90px;
+    padding: 10px;
+    border: 3px solid white;
+}
+
+.desligaPNG {
+    width: 30px;
+    height: 30px;
+    background-color: #ec0000;
+    border-radius: 90px;
+    padding: 10px;
+    border: 3px solid white;
+}
+
+.cameraPNG {
+    width: 30px;
+    height: 30px;
+    background-color: #a94d14;
+    border-radius: 90px;
+    padding: 10px;
+    border: 3px solid white;
+}
+
+.eclairLogo {
+    height: 100px;
+}
+
+@keyframes scrollar {
+    0% {
+        transform: translateX(0px);
+    }
+
+    100% {
+        transform: translateX(calc(-210px * 4));
+    }
+}
+
+.acionarBotoes:last-child {
+    background-color: #cccccc !important;
+    color: #666666 !important;
+    background-repeat: repeat;
+    background-size: 90px 90px;
+    background-position: 20px;
+}
+
+.acionarBotoes:last-child:hover {
+    background-color: #d18400;
+    color: white;
+    background-repeat: repeat;
+    background-size: 90px 90px;
+    background-position: 20px;
+}
+
+.textoInforma {
+    width: 50%;
+    border-radius: 20px;
+    background-color: #ffffff66;
+    padding: 20px;
+    margin: 20px;
+    padding-left: 0px;
+    overflow: hidden;
+}
+
+.informacoes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column nowrap;
+}
+
+.informacoes>h1 {
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.712);
+}
+
+.informacoes>div>h2 {
+    text-align: center;
+    color: #ffffff;
+
+
+}
+
+.informacoes>hr {
+    color: #000;
+    border-color: #ffffff;
+    width: 80%;
+    text-align: center;
+    margin: 10px 0px 10px 0px;
+}
+
+.informacoes>  div >input {
+    color: #9e9e9e;
+    border-color: #ffffff;
+    position: relative;
+    padding: 20px;
+    width: 7%;
+    min-width: 30px;
+    height: 50px;
+    text-align: center;
+    margin-right: 20px;
+}
+.informacoes>  div >input:hover{
+    cursor: pointer;
+}
+
+
+
+/* Quando o checkbox está marcado, habilita os botões */
+.informacoes:has(input:checked) ~ .acionarBotoes {
+    opacity: 1;
+    background-color: #cccccc !important;
+    color: #666666 !important;
+    transform: none;
+    cursor: pointer !important;
+    pointer-events: auto;
+    background-color: #0012d7 !important;
+    color: white !important;
+}
+
+.informacoes:has(input:checked) ~ .acionarBotoes:last-child {
+    opacity: 1;
+    background-color: #c37200 !important;
+    color: #666666 !important;
+    transform: none;
+    cursor: pointer !important;
+    pointer-events: auto;
+    color: white !important;
+}
+
+
+
+.marcar {
+    background-color: #ffffff28;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.textoInforma>h1 {
+    text-align: end;
+    color: #1c1c1c;
+    letter-spacing: -1px;
+    font-size: 50px;
+    font-weight: 600;
+    text-shadow: 0px 0px 10px rgba(62, 62, 62, 0);
+}
+
+.textoInforma>h2 {
+    text-align: end;
+    color: #1c1c1c;
+    letter-spacing: -1px;
+    font-size: 30px;
+    font-weight: 100;
+    text-shadow: 0px 0px 10px rgba(62, 62, 62, 0);
+}
+
+.textoInforma>img {
+    border-radius: 20px;
+}
+
+.regra {
+    color: rgb(151, 151, 255);
+    
+}
+.regra:visited {
+    color: rgb(151, 151, 255);
+}
+
+.crieSuasSalas {
+    background-color: #1c1c1c;
+    display: flex;
+    width: 50%;
+    justify-content: flex-end;
+    flex-flow: column nowrap;
+    align-items: center;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 5px;
+}
+
+.crieSuasSalas>img {
+    background-color: #039be5;
+}
+
+#message {
+    background: white;
+    max-width: 360px;
+    margin: 100px auto 16px;
+    padding: 32px 24px;
+    border-radius: 3px;
+}
+
+#message h2 {
+    color: #ffa100;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0 0 8px;
+}
+
+#message h1 {
+    font-size: 22px;
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0 0 16px;
+}
+
+#message p {
+    line-height: 140%;
+    margin: 16px 0 24px;
+    font-size: 14px;
+}
+
+#message a {
+    display: block;
+    text-align: center;
+    background: #039be5;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+    padding: 16px;
+    border-radius: 4px;
+}
+
+#message,
+#message a {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+#load {
+    color: rgba(0, 0, 0, 0.4);
+    text-align: center;
+    font-size: 13px;
+}
+
+
+
+
+
+button {
+    margin: 0.2em 0.1em;
+}
+
+
+
+
+
+
+h1 {
+    font-size: 40px;
+}
+
+
+/* =========================================================
+   Modal "Conectar a uma Sala" — versão FLAT
+   Sem blur, sem gradiente, sem sombra, sem animação, sem transition.
+   Cores puxadas do próprio site: #1c1c1c / #0154e4 / #0089f2.
+   ========================================================= */
+
+#modalRoomId {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+#modalRoomId .modal-content {
+    background: #1c1c1c;
+    border: 2px solid #0154e4;
+    border-radius: 12px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 320px;
+    max-width: 90%;
+    position: relative;
+}
+
+#modalRoomId h2 {
+    color: #ffffff;
+    margin: 0 0 24px 0;
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+}
+
+#modalRoomId input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 2px solid #3a3a3a;
+    border-radius: 8px;
+    background: #2a2a2a;
+    color: #ffffff;
+    margin-bottom: 16px;
+}
+
+#modalRoomId input::placeholder {
+    color: #888888;
+}
+
+#modalRoomId input:focus {
+    outline: none;
+    border-color: #0089f2;
+}
+
+#modalRoomId button {
+    padding: 12px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    background: #0154e4;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#modalRoomId button:hover {
+    background: #0089f2;
+}
+
+#modalRoomId button:active {
+    background: #003bb8;
+}
+
+/* Botão X de fechar */
+#modalRoomId .modal-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    font-size: 22px;
+    line-height: 1;
+    background: transparent;
+    color: #888888;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#modalRoomId .modal-close:hover {
+    background: #2a2a2a;
+    color: #ffffff;
+}
+/* =========================================================
+   Botão de troca de idioma (PT / EN)
+   ========================================================= */
+.langSwitch {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 48px;
+}
+
+.langSwitch:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #ffffff;
+}
+
+.langSwitch:active {
+    transform: scale(0.95);
+}

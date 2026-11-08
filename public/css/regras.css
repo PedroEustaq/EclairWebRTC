@@ -1,0 +1,244 @@
+/* Estilos para a página de Termos e Condições */
+/* Versão xapadão: sem webkit, sem pseudo, sem hover, sem transition,
+   sem keyframes, sem sombra, sem blur, sem gradiente, sem imagem. */
+
+/* Container principal */
+.termos-container {
+    width: 100%;
+    min-height: calc(100vh - 150px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    padding-right: 0px;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+/* Conteúdo dos termos */
+.termos-content {
+    max-width: 900px;
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 20px;
+    padding: 40px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+/* Título principal */
+.termos-titulo {
+    color: #1c1c1c;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Subtítulo */
+.termos-subtitulo {
+    color: #0154e4;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Data de vigência */
+.termos-data {
+    color: #666666;
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+/* Introdução */
+.termos-intro {
+    background: #e8f0fd;
+    border-left: 4px solid #0154e4;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.termos-intro p {
+    color: #1c1c1c;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Seções dos termos */
+.termos-secao {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f7f8fa;
+    border-radius: 12px;
+    border: 1px solid #c9d8f5;
+}
+
+.termos-secao h3 {
+    color: #0154e4;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #0154e4;
+    padding-bottom: 8px;
+}
+
+.termos-secao p {
+    color: #1c1c1c;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.termos-secao ul {
+    margin: 15px 0;
+    padding-left: 20px;
+}
+
+.termos-secao li {
+    color: #1c1c1c;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 8px;
+    padding-left: 10px;
+}
+
+/* Seção de contato */
+.termos-contato {
+    background: #667eea;
+    color: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.termos-contato p {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.logoEclair {
+    height: 80px;
+    padding: 100px 0px;
+    margin-left: 10px;
+}
+
+/* Links dentro dos termos */
+.termos-content a {
+    color: #0154e4;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Responsividade para tablets */
+@media (max-width: 768px) {
+    .termos-container {
+        padding: 15px;
+    }
+
+    .termos-content {
+        padding: 30px 25px;
+        margin-top: 15px;
+    }
+
+    .termos-titulo {
+        font-size: 2rem;
+    }
+
+    .termos-subtitulo {
+        font-size: 1.3rem;
+    }
+
+    .termos-secao {
+        padding: 15px;
+        margin-bottom: 25px;
+    }
+
+    .termos-secao h3 {
+        font-size: 1.2rem;
+    }
+
+    .termos-intro {
+        padding: 15px;
+    }
+
+    .termos-intro p {
+        font-size: 1rem;
+    }
+}
+
+/* Responsividade para celulares */
+@media (max-width: 480px) {
+    .termos-container {
+        padding: 10px;
+    }
+
+    .termos-content {
+        padding: 20px 15px;
+        margin-top: 10px;
+        border-radius: 15px;
+    }
+
+    .termos-titulo {
+        font-size: 1.8rem;
+    }
+
+    .termos-subtitulo {
+        font-size: 1.1rem;
+    }
+
+    .termos-data {
+        font-size: 0.9rem;
+    }
+
+    .termos-secao {
+        padding: 12px;
+        margin-bottom: 20px;
+    }
+
+    .termos-secao h3 {
+        font-size: 1.1rem;
+    }
+
+    .termos-secao p,
+    .termos-secao li {
+        font-size: 0.95rem;
+    }
+
+    .termos-intro {
+        padding: 12px;
+    }
+
+    .termos-intro p {
+        font-size: 0.95rem;
+    }
+
+    .termos-contato {
+        padding: 20px 15px;
+    }
+
+    .termos-contato p {
+        font-size: 1rem;
+    }
+
+    header h1 {
+        font-size: 18px !important;
+    }
+
+    .logoEclair {
+        height: 60px;
+    }
+}
+
+header {
+    padding: 10px 0px;
+    display: flex;
+    justify-content: space-evenly;
+    backdrop-filter: none;
+}
